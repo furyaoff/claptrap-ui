@@ -1,0 +1,242 @@
+.q-toggle__track {
+    height: 0.8em;
+    padding: 0;
+    width: 1.8em;
+    margin-left: 0px;
+    box-shadow: 0px 0px 20px $alternative;
+    backdrop-filter: blur(60px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 20px;
+    background-color: $dark;
+    opacity: 0.3;
+
+    transition: background-color 200ms, opacity 200ms;
+}
+
+.q-toggle__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $secondary !important;
+    width: 2em;
+    height: 1em;
+
+    &.q-toggle__inner--truthy {
+        .q-toggle__track {
+            opacity: 1;
+            background: linear-gradient(176deg, #9C589C 21.78%, #FF005C 79.22%);
+        }
+
+        .q-toggle__thumb {
+            left: 1em !important;
+        }
+    }
+}
+
+.q-toggle__thumb {
+    color: white;
+    left: 0.5em;
+
+    &::before {
+        display: none;
+    }
+}
+
+.dark-mode-toggle {
+    .q-toggle__inner {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 20px;
+            top: 12px;
+            background: url('@/assets/images/icons/sun.svg') no-repeat center;
+            background-size: 100% 100%;
+            width: 0.4em;
+            height: 0.4em;
+            z-index: 1;
+        }
+
+        &::after {
+            content: "";
+            color: white;
+            position: absolute;
+            right: 20px;
+            top: 11px;
+            width: 16px;
+            height: 17px;
+            display: block;
+            background-image: url("@/assets/images/icons/moon.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+    }
+}
+
+.q-field__native,
+.q-field__control {
+    height: fit-content;
+
+    &::placeholder {
+        opacity: 0.4;
+    }
+}
+
+.clean-input {
+    height: unset !important;
+    min-height: unset !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+[class*="fs-"] {
+
+    .q-field__control,
+    .q-field__native,
+    .q-field {
+        font-size: inherit;
+        line-height: inherit;
+    }
+}
+
+[class*="text-"] {
+
+    .q-field__control,
+    .q-field__native,
+    .q-field__label {
+        color: inherit;
+    }
+}
+
+.q-field__control {
+    align-items: center;
+}
+
+.q-menu {
+    background: $primary-dark;
+    border: 0;
+    padding: 20px;
+
+    &.alternative {
+        background: linear-gradient(0deg, #26173A, #26173A), linear-gradient(0deg, #1F0C32, #1F0C32), rgba(255, 255, 255, 0.2);
+        box-shadow: 0px 0px 20px #170821;
+        backdrop-filter: blur(40px);
+        border-radius: 15px;
+        transform: translateY(15px);
+        padding: 10px 14px;
+
+        & .q-item {
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+    }
+}
+
+.q-field__marginal {
+    color: inherit;
+}
+
+.input-top-attached {
+    margin-top: -18px;
+}
+
+.q-checkbox__inner {
+    color: white;
+    opacity: 0.3;
+    margin-right: 20px;
+    min-width: 0;
+    width: 20px;
+    height: 20px;
+
+    .q-checkbox__bg {
+        border-radius: 5px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &.q-checkbox__inner--truthy {
+        color: $primary !important;
+        opacity: 1 !important;
+    }
+}
+
+.select-border {
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+label:not(.q-field--with-bottom):not(.move-error-to-bottom) {
+    .q-field__bottom {
+        display: none;
+    }
+}
+
+.move-error-to-bottom,
+.move-error-to-bottom-low {
+    padding-bottom: 0;
+    transition: none !important;
+
+    .q-field__bottom {
+        position: absolute;
+        top: 155%;
+        left: -5px;
+        width: 300%;
+        padding-top: 0;
+        color: $primary;
+        transform: translateY(100%) !important;
+    }
+}
+
+.move-error-to-bottom-low .q-field__bottom {
+    top: 135% !important;
+}
+
+.title-with-error {
+    .q-icon {
+        pointer-events: none;
+        visibility: hidden;
+    }
+}
+
+.q-field--error {
+    border-color: $primary;
+
+    .text-negative {
+        color: inherit !important;
+    }
+
+    .q-icon.text-negative {
+        display: none;
+    }
+
+    .title-with-error {
+        color: $primary;
+
+        p {
+            opacity: 1;
+        }
+
+        .q-icon {
+            pointer-events: all;
+            visibility: visible;
+        }
+    }
+}
+
+.min-size-input {
+    .q-field__control {
+        height: fit-content;
+
+        input {
+            width: fit-content;
+        }
+    }
+}
+
+.input-no-append .q-field__append {
+    display: none;
+}

@@ -1,0 +1,312 @@
+$table-padding: 18px;
+$alternative-header-horizontal-padding: 30px;
+$alternative-header-top-padding: 24px;
+$alternative-header-bottom-padding: 8px;
+$row-padding-y: 13px;
+$alternative-row-padding-y: 12px;
+$row-padding-x: 30px;
+
+.q-table__container {
+    color: white;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+
+    .q-table {
+        border-collapse: separate !important;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: $table-padding;
+        min-height: 60px;
+
+        thead {
+            border: none;
+            color: $dark;
+            margin-left: -100px;
+
+            tr {
+                border: none;
+
+                th {
+                    position: sticky;
+                    z-index: 1;
+                    padding-bottom: $table-padding * 2;
+                    opacity: 0.4;
+                    border: none;
+    
+                    &.sorted {
+                        color: white;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .q-table__sort-icon {
+                margin-top: -4px;
+            }
+        }
+
+        tbody {
+            box-shadow: none;
+            backdrop-filter: blur(60px);
+            position: relative;
+
+            &::before {
+                content: "";
+                box-shadow: 0px 0px 20px rgba(20, 20, 46, 0.15);
+                background: rgba(255, 255, 255, 0.05);
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: calc(100% + 2 * #{$table-padding});
+                height: calc(100% + 2 * #{$table-padding});
+                border-radius: 30px;
+                margin-left: -$table-padding;
+                margin-top: -$table-padding;
+            }
+
+            tr {
+                position: relative;
+                border: none;
+
+                &:hover {
+                    td {
+                        background-color: $accent;
+                        box-shadow: 0px 0px 20px rgba(20, 20, 46, 0.15);
+                    }
+                }
+
+                td {
+                    border-bottom: 0;
+                    padding-top: $row-padding-y;
+                    padding-bottom: $row-padding-y;
+                    position: relative;
+                    z-index: 1;
+                    font-size: 16px;
+                    border: none;
+                    background-color: transparent;
+                    transition: all 250ms ease-out;
+
+                    &::before {
+                        background: none;
+                        content: '';
+                    }
+
+                    &:first-child {
+                        padding-left: $row-padding-x;
+                        border-top-left-radius: 60px;
+                        border-bottom-left-radius: 60px;
+                    }
+
+                    &:last-child {
+                        padding-right: $row-padding-x;
+                        border-top-right-radius: 60px;
+                        border-bottom-right-radius: 60px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* .q-table__bottom:not(.q-table__bottom--nodata) {
+        display: none;
+    } */
+
+    .q-table__bottom.q-table__bottom--nodata {
+        border-top: none;
+        box-shadow: 0px 0px 20px rgb(20 20 46 / 15%);
+        background: rgba(255, 255, 255, 0.05);
+        width: 100%;
+        height: 76px;
+        border-radius: 100px;
+        justify-content: center;
+    }
+
+    &:not(.table-header-border).table-empty {
+        tbody::before {
+            display: none;
+        }
+
+        .q-table thead tr th {
+            padding-bottom: 0;
+        }
+    }
+
+    .transactions-table-head-row {
+        position: relative;
+
+        .q-table__sort-icon {
+            font-size: 0 !important;
+            width: 8px !important;
+            height: 12px !important;
+            opacity: 0;
+            background: url('@/assets/images/icons/sortarrow.svg') no-repeat center;
+            background-size: contain;
+        }
+
+        &.sorted,
+        &::hover {
+            .q-table__sort-icon {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.bg-transparent {
+        tbody {
+            &::before {
+                background: none;
+                box-shadow: none;
+            }
+        }
+    }
+
+    &.table-no-background .q-table tbody::before {
+        display: none;
+    }
+
+    &.table-header-border {
+        thead {
+            tr {
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 1px;
+                    background: $white;
+                    bottom: 16px;
+                    left: 0;
+                    opacity: 0.1;
+                }
+            }
+        }
+    }
+
+    &.alternative {
+        .q-table {
+            padding: 0;
+            border-spacing: 0 16px;
+    
+            thead {
+                th {
+                    padding-left: $alternative-header-horizontal-padding;
+                    padding-right: $alternative-header-horizontal-padding;
+                    padding-top: $alternative-header-top-padding;
+                    padding-bottom: $alternative-header-bottom-padding;
+                }
+            }
+    
+            tbody {
+                backdrop-filter: unset;
+    
+                tr {
+                    position: relative;
+                    border: none;
+    
+                    &:hover {
+                        td {
+                            background-color: transparentize($color: $white, $amount: 0.9);
+                        }
+                    }
+
+                    td {
+                        padding-top: $alternative-row-padding-y;
+                        padding-bottom: $alternative-row-padding-y;
+                        background-color: transparentize($color: $white, $amount: 0.95);
+                        backdrop-filter: unset;
+                        transition: all 250ms ease-out;
+                        
+
+                        &:first-child {
+                            border-top-left-radius: 20px;
+                            border-bottom-left-radius: 20px;
+                        }
+
+                        &:last-child {
+                            border-top-right-radius: 20px;
+                            border-bottom-right-radius: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.alternative-index {
+        .q-table {
+            thead {
+                tr th:nth-child(2) {
+                    padding-left: 3px;
+                }
+            }
+
+            tbody {
+                tr {
+                    td:nth-child(1) {
+                        padding-left: 3px;
+                        padding-right: 10px;
+                    }
+    
+                    &:hover {
+                        td {
+                            background-color: transparentize($white, 0.95);
+                            box-shadow: none;
+                        }
+                    }
+    
+                    td {    
+                        font-size: 15px;
+
+                        &:first-child {
+                            background: none !important;
+                        }
+
+                        &:nth-child(2) {
+                            border-top-left-radius: 60px;
+                            border-bottom-left-radius: 60px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.hide-header {
+    thead {
+        display: none;
+    }
+}
+
+.small-rows {
+    .q-table__container .q-table tbody tr td {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
+
+.table-no-padding .q-table {
+    padding: 0;
+}
+
+.q-tr.q-tr--no-hover {
+    td {
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    &::after {
+        display: none;
+    }
+}
+
+.footer-h-0 {
+    .q-table__bottom {
+        height: 0;
+        min-height: 0;
+        padding: 0;
+        border: none;
+    }
+}
